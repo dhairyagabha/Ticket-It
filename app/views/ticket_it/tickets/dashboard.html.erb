@@ -1,0 +1,5 @@
+<h1>Dashboard</h1>
+<!--Sample of metrics {"all"=>1, "new"=>1, "work_in_progress"=>0, "quality_check"=>0, "closed"=>0}-->
+<% @ticket_metrics.each do |m,v| %>
+    <p><strong><%= m.to_s.humanize %>: </strong><%= v %></p>
+<% end %>

@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = TicketIt::VERSION
   s.authors     = ["Dhairya Gabhawala"]
   s.email       = ["gabhawaladhairya@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of TicketIt."
-  s.description = "TODO: Description of TicketIt."
+  s.homepage    = "https://ticketit-sample.herokuapp.com"
+  s.summary     = "TicketIt is an open source rails mountable engine to make ticketing system integration easy and customizable."
+  s.description = "Description of TicketIt."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]

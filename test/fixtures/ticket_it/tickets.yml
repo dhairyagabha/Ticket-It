@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  number: MyString
+  status: MyString
+  name: MyString
+  description: MyText
+  resource_id: 1
+  type: 
+  priority: MyString
+  prefered_contact: MyString
+  closed_at: 2018-03-30 22:14:01
+
+two:
+  number: MyString
+  status: MyString
+  name: MyString
+  description: MyText
+  resource_id: 1
+  type: 
+  priority: MyString
+  prefered_contact: MyString
+  closed_at: 2018-03-30 22:14:01

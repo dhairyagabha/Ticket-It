@@ -1,0 +1,29 @@
+<h1>All Tickets</h1>
+<%= link_to 'New', new_ticket_path %>
+<table>
+  <thead>
+  <tr>
+    <th>Number</th>
+    <th>Name</th>
+    <th>Priority</th>
+    <th>Status</th>
+    <th>Type</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @tickets.each do |ticket| %>
+  <tr>
+    <td><%= ticket.number %></td>
+    <td><%= link_to ticket.name, ticket_path(ticket) %></td>
+    <td><%= ticket.priority.humanize %></td>
+    <td><%= ticket.status.humanize %></td>
+    <td><%= ticket.ticket_type.humanize %></td>
+    <td>
+      <%= link_to 'Edit', edit_ticket_path(ticket) %> |
+      <%= link_to 'Delete', ticket_path(ticket), method: :delete, data:{confirm:'Are you sure?'} %>
+    </td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>

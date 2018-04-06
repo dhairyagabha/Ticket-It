@@ -1,0 +1,48 @@
+<%= form_for ticket do |f| %>
+    <% if !ticket.errors.empty? %>
+        <ul>
+          <% ticket.errors.full_messages.each do |m| %>
+              <li><%= m %></li>
+          <% end %>
+        </ul>
+    <% end %>
+    <div class="field">
+      <%= f.label :number %>
+      <br/>
+      <%= f.text_field :number %>
+    </div>
+    <div class="field">
+      <%= f.label :status %>
+      <br/>
+      <%= f.select :status, @ticket.ticket_status.map {|t| [t.humanize, t]} %>
+    </div>
+    <div class="field">
+      <%= f.label :name %>
+      <br/>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description %>
+      <br/>
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+      <%= f.label :priority %>
+      <br/>
+      <%= f.select :priority, @ticket.ticket_priorities.map {|t| [t.humanize, t]}, {prompt: true} %>
+    </div>
+    <div class="field">
+      <%= f.label :ticket_type %>
+      <br/>
+      <%= f.select :ticket_type, @ticket.ticket_types.map {|t| [t.humanize, t]}, {prompt: true} %>
+    </div>
+    <div class="field">
+      <%= f.label :prefered_contact %>
+      <br/>
+      <%= f.select :prefered_contact, @ticket.ticket_contact.map {|t| [t.humanize, t]}, {prompt: true} %>
+    </div>
+    <div class="actions">
+      <%= f.submit "#{ticket.persisted? ? 'Update Ticket' : 'Save Ticket'}" %>
+      <%= link_to 'Cancel', tickets_path %>
+    </div>
+<% end %>

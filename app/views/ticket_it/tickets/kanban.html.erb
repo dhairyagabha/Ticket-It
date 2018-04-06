@@ -1,0 +1,13 @@
+<h1>Kanban Board</h1>
+<% TicketIt::Ticket.first.ticket_status.each do |s| %>
+    <div>
+      <h3><%= s.humanize %></h3>
+      <ul>
+        <% if @tickets["#{s}"] %>
+            <% @tickets["#{s}"].each do |t| %>
+                <li><%= link_to t.name, tickets_path(t) %></li>
+            <% end %>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

@@ -1,0 +1,17 @@
+<h1><%= @ticket.name %></h1>
+<p><strong>Number:</strong><br><%= @ticket.number %></p>
+<p><strong>Status:</strong><br><%= @ticket.status %></p>
+<p><strong>Name:</strong><br><%= @ticket.name %></p>
+<!--In case if using a text editor for ticket description.-->
+<p><strong>Description:</strong><br><%= raw @ticket.description %></p>
+<p><strong>Priority:</strong><br><%= @ticket.priority.humanize %></p>
+<p><strong>Ticket Type:</strong><br><%= @ticket.ticket_type %></p>
+<p><strong>Leave a Comment</strong></p>
+<%= form_for @ticket.comments.new do |f| %>
+    <%= f.hidden_field :commentable_id, value: @ticket.id %>
+    <%= f.hidden_field :commentable_type, value: @ticket.class %>
+    <%= f.text_area :content %>
+    <%= f.submit 'Comment' %>
+<% end %>
+<p><strong>Comments</strong></p>
+<%= render @ticket.comments.order(created_at: :desc) %>
