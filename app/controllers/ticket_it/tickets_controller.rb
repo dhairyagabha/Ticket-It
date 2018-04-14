@@ -4,7 +4,8 @@ module TicketIt
   class TicketsController < ApplicationController
 
     def index
-      @tickets = Ticket.where(resource_id: ticketit_user.id)
+      @all_tickets = Ticket.all.order(created_at: :desc)
+      @tickets = Ticket.where(resource_id: ticketit_user.id).order(created_at: :desc)
     end
 
     def new
@@ -33,6 +34,11 @@ module TicketIt
       @ticket = Ticket.left_joins(:comments).find(params[:id])
     end
 
+    def public
+      @ticket = Ticket.left_joins(:comments).find(params[:id])
+      render layout: false
+    end
+
     def edit
       @ticket = Ticket.find(params[:id])
     end
@@ -44,12 +50,12 @@ module TicketIt
           format.html{ redirect_to @ticket, notice:'Ticket updated successfully!'}
           #to use js reponse please create a response file at app/views/ticket_it/tickets/create.js.erb
           format.js{render json: @ticket.to_json}
-          format.json{render json: @ticket.to_json}
+          format.json{render json: @ticket.to_json, status: :created, location: @ticket}
         else
           format.html{ render :edit, notice:'Failed to update a ticket!'}
           #to use js reponse please create a response file at app/views/ticket_it/tickets/create.js.erb
           format.js{}
-          format.json{render json: @ticket.to_json}
+          format.json{render json: @ticket.errors, status: :unprocessable_entity}
         end
       end
     end

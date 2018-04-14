@@ -6,6 +6,10 @@ TicketIt::Engine.routes.draw do
       get :dashboard
       get :kanban
     end
+    member do
+      get :public
+    end
   end
   resources :comments
+  resources :reporters
 end

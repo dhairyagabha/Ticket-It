@@ -1,0 +1,26 @@
+<h1>All Reporters</h1>
+<%= link_to 'New', new_reporter_path %>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Position</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% if !@reporters.empty? %>
+      <% @reporters.each do |reporter| %>
+          <tr>
+            <td><%= link_to reporter.name, reporter_path(reporter) %></td>
+            <td><%= reporter.email %></td>
+            <td><%= reporter.position %></td>
+          </tr>
+      <% end %>
+  <% else %>
+    <tr>
+      <td colspan="3"> No reporters yet!</td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

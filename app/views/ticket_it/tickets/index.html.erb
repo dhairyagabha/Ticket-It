@@ -1,5 +1,9 @@
-<h1>All Tickets</h1>
+<h1><%= params[:filter]=='all_tickets' ? 'All Tickets' : 'My Tickets' %></h1>
 <%= link_to 'New', new_ticket_path %>
+<br/>
+<strong>Filters:</strong><br>
+<%= link_to 'My Tickets', tickets_path(filter: :my_tickets) %>
+<%= link_to 'All Tickets', tickets_path(filter: :all_tickets) %>
 <table>
   <thead>
   <tr>
@@ -12,7 +16,8 @@
   </tr>
   </thead>
   <tbody>
-  <% @tickets.each do |ticket| %>
+  <% tickets = params[:filter]=='all_tickets' ? @all_tickets : @tickets %>
+  <% tickets.each do |ticket| %>
   <tr>
     <td><%= ticket.number %></td>
     <td><%= link_to ticket.name, ticket_path(ticket) %></td>

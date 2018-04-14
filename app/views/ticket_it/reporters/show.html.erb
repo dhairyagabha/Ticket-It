@@ -1,0 +1,20 @@
+<h1><%= @reporter.name %></h1>
+<div>
+  <p><strong>Name:</strong><%= @reporter.name %></p>
+  <p><strong>Email:</strong><%= @reporter.email %></p>
+  <p><strong>Phone:</strong><%= @reporter.phone %></p>
+  <p><strong>Organization:</strong><%= @reporter.organization %></p>
+  <p><strong>Position:</strong><%= @reporter.position %></p>
+  <p><strong>Notes:</strong><%= raw @reporter.notes %></p>
+</div>
+<%= link_to 'Edit', edit_reporter_path(@reporter) %>
+
+<h2>Tickets</h2>
+<hr>
+<div>
+  <ul>
+    <% @reporter.tickets.each do |t| %>
+    <li><%= link_to t.name, ticket_path(t) %></li>
+    <% end %>
+  </ul>
+</div>
