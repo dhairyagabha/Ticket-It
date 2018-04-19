@@ -1,5 +1,5 @@
 require "ticket_it/engine"
-
+require "turbolinks"
 module TicketIt
 
   # Resource is who onws the tickets as assigner, Configure resource class name.
