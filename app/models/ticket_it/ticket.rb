@@ -5,7 +5,7 @@ module TicketIt
     has_many :comments, as: :commentable
     belongs_to :ticket_it_reporter, class_name: 'TicketIt::Reporter', optional: true
     validates_uniqueness_of :number, :public_token
-    validates_presence_of :number, :name, :status
+    validates_presence_of :name, :status
     accepts_nested_attributes_for :ticket_it_reporter
     has_many :attachments, class_name: 'TicketIt::Attachment', as: :attachable
 
