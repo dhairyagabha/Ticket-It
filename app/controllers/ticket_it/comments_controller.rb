@@ -5,7 +5,7 @@ module TicketIt
 
     def create
       @comment = Comment.new(comment_params)
-      @comment.commenter = ticketit_user
+      @comment.commenter = ticketit_user.present? ? ticketit_user : @comment.commentable.ticket_it_reporter
       respond_to do |format|
         if @comment.save
           format.html{redirect_back(fallback_location: polymorphic_url(@comment.commentable), notice: 'Commented!')}

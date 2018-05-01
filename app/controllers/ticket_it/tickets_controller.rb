@@ -36,7 +36,6 @@ module TicketIt
 
     def public
       @ticket = Ticket.left_joins(:comments).find(params[:id])
-      render layout: false
     end
 
     def edit

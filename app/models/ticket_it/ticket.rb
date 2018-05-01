@@ -1,10 +1,13 @@
 module TicketIt
   class Ticket < ApplicationRecord
     belongs_to :resource, class_name: TicketIt.resource_class, optional: true
+    has_secure_token :public_token
     has_many :comments, as: :commentable
-    validates_uniqueness_of :number
-    validates_presence_of :number, :name, :status, :priority, :ticket_type
-
+    belongs_to :ticket_it_reporter, class_name: 'TicketIt::Reporter', optional: true
+    validates_uniqueness_of :number, :public_token
+    validates_presence_of :number, :name, :status
+    accepts_nested_attributes_for :ticket_it_reporter
+    has_many :attachments, class_name: 'TicketIt::Attachment', as: :attachable
     def ticket_priorities
       TicketIt.ticket_priorities || %w(high critical blocker low)
     end

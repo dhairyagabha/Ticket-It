@@ -3,7 +3,7 @@ module TicketIt
   class ApplicationController < ::ApplicationController
     protect_from_forgery with: :exception
 
-    before_action :ensure_user, if: :public_links
+    before_action :ensure_user, unless: :public_links
 
     def ensure_user
       unless ticketit_user
@@ -12,10 +12,10 @@ module TicketIt
     end
 
     def public_links
-      if action_name == 'public'
-        false
-      else
+      if (action_name == 'public') || (controller_name == 'comments' && action_name == 'create')
         true
+      else
+        false
       end
     end
 
