@@ -1,0 +1,3 @@
+<p>Hello <%= @reporter.name.present? ? @reporter.name : @reporter.email %>!</p>
+<p>Your support request has been updated. Please follow this link to review your provided details and follow up on it further more. <%= link_to 'Link to Request', @url %></p>
+<p>Thank you,<br>Your support team.</p>

@@ -8,6 +8,10 @@ module TicketIt
     validates_presence_of :number, :name, :status
     accepts_nested_attributes_for :ticket_it_reporter
     has_many :attachments, class_name: 'TicketIt::Attachment', as: :attachable
+
+    after_create_commit :ticket_created
+    after_update_commit :ticket_updated
+
     def ticket_priorities
       TicketIt.ticket_priorities || %w(high critical blocker low)
     end
@@ -40,6 +44,19 @@ module TicketIt
         all
       end
     }
+
+    private
+    def ticket_created
+      if self.ticket_it_reporter
+        TicketsMailer.new_ticket(self).deliver_later
+      end
+    end
+
+    def ticket_updated
+      if self.ticket_it_reporter
+        TicketsMailer.ticket_update(self).deliver_later
+      end
+    end
 
   end
 end
